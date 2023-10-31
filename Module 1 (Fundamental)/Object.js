@@ -94,3 +94,44 @@ const data = {
 const {name, hobby} = data
 console.log(name)
 console.log(hobby)
+
+// Spread Operator (...)
+const studentProfile = {
+    name: 'Immanuel',
+    program: 'WD'
+}
+
+const newStudentProfile = {...studentProfile, program: 'DM', year: 2023}
+console.log(newStudentProfile)
+
+// Array of Object
+const productsArr = [
+    {name: 'Jeruk', price: 10000},
+    {name: 'Anggur', price: 15000},
+    {name: 'Semangka', price: 20000}
+]
+console.log(productsArr[0])
+console.log(productsArr[0].name)
+
+for(let item of productsArr) {
+    console.log(item.name)
+}
+
+// Example: Buatlah program unbtuk merubah price number menjadi price IDR dari data berikut:
+[
+    {name: 'Jeruk', price: 10000},
+    {name: 'Anggur', price: 15000},
+    {name: 'Semangka', price: 20000}
+]
+
+const products = [
+    {name: 'Jeruk', price: 10000},
+    {name: 'Anggur', prince: 15000},
+    {name: 'Semangka', price: 20000}
+]
+
+for (let item of products) {
+    item.price = `Rp.${item?.price?.toLocaleString(`id-ID`)}` // Conditional chaining, it asks whether there is item, and there is price, if not it continues to the next object
+}
+
+console.log(products)
