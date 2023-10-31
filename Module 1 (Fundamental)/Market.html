@@ -1,0 +1,18 @@
+<script>
+    let success = false
+    const totalBelanja = 100000
+    while (success == false) {
+    let uangPembeli = Number(prompt(`Total Belanja Rp.${totalBelanja}, silahkan masukan uang anda:`))
+    if (uangPembeli < totalBelanja) {
+        alert('Saldo anda tidak mencukupi silahkan coba lagi')
+        success = false
+    } else if (uangPembeli == totalBelanja) {
+        alert('Terima Kasih telah berbelanja, saldo mencukupi')
+        success = true
+    } else {
+        let uangKembali = uangPembeli - totalBelanja
+        alert('Terima kasih telah berbelanja, berikut kembaliannya: Rp.' + uangKembali)
+        success = true
+    }
+}
+</script>
