@@ -1,0 +1,71 @@
+<script>
+    let cart = []
+    let quantity = 0
+    class Market {
+        constructor(item, price) {
+            this.item = item,
+            this.price = price
+        }
+    }
+
+    const market = [new Market('Apple', 10000), new Market('Banana', 15000), new Market('Grape', 20000)]
+
+    const showProducts = (database) => {
+        let listProducts = ''
+
+        for(let i=0; i<database.length; i++) {
+            listProducts += `${i+1}. ${database[i].item} = Rp.${database[i].price.toLocaleString('id-ID')} \n`
+        }
+        return listProducts
+    }
+
+    const showCart = (cart) => {
+        let listItems = ''
+        
+        for (i = 0; i < cart.length; i++) {
+            listItems += `${cart[i].item}: ${cart[i].qty} qty.\n`
+        }
+        return listItems
+    }
+
+    let flag = true
+
+    while(flag == true) {
+        let pickItem = Number(prompt(`Pick the item you want to purchase:\n${showProducts(market)}`))
+
+        if (pickItem == 0 && pickItem !== 1 && pickItem !== 2 && pickItem !== 3) {
+            alert("Item not found!")
+            }
+        quantity = Number(prompt('Input Quantity:'))
+        
+        if (cart.length == 0) {
+            cart.push({item: market[pickItem - 1].item, qty: quantity})
+        } else {
+            let itemExist = false
+            let sameIndex = 0
+            for (i = 0; i < cart.length; i++){
+                if(cart[i].item == market[pickItem -1].item) {
+                    itemExist = true
+                    sameIndex = i
+                }
+            }
+            if (itemExist == false) {
+                cart.push({item: market[pickItem - 1].item, qty: quantity})
+            } else if (itemExist == true) {
+                cart[sameIndex].qty += quantity
+            }
+        }
+
+        let pickPrompt = Number(prompt('1. Pick an item again\n2. Checkout'))
+
+        if (pickPrompt == 1) {
+            flag = true
+        } else if (pickPrompt == 2) {
+            alert(showCart(cart))
+            flag = false
+        } else {
+            alert("Invalid choice, please pick the correct choice")
+            flag = true
+        }
+    }
+</script>
