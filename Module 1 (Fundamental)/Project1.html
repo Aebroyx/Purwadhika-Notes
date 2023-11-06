@@ -93,7 +93,7 @@ function deleteProduct(products, idx) {
     /*
     const deleteProduct = () => {
     let selectProduct = prompt(`List of Products:\n ${showProducts(products)}`)
-    const index = products.indexOf();
+    const index = products.indexOf(products);
 
         if (index > -1) { // only splice array when item is found
             products.splice(index, 1); // 2nd parameter means remove one item only
@@ -106,9 +106,9 @@ function deleteProduct(products, idx) {
 
     // function main app
     const App = () => {
-        // do while buat login (jika logih failed balik ke input username and password)
+        // do while buat login (jika login failed balik ke input username and password)
         let loginSuccess = false
-        do {
+        while (loginSuccess == false) {
            let inputUsern = prompt('Insert Username:')
            let inputPassword = prompt('Insert Password:')
 
@@ -118,9 +118,8 @@ function deleteProduct(products, idx) {
                 alert('Wrong username or password!')
                 loginSuccess == false
             }
-        } while(loginSuccess = false)
+        }
 
-        let logout = false
         do {
             selectedInput = prompt(
                 `Welcome ${username}!\n1. Product List\n2. Create Product\n3. Update Product\n4. Delete Product\n5. Logout`)
@@ -138,14 +137,12 @@ function deleteProduct(products, idx) {
                 console.log(products, "DELETED PRODUCT")
                 alert("Produk berhasil di hapus")
             } else if (selectedInput == '5') {
-                logout = true
+                loginSuccess = false
             } else {
                 alert('Invalid choice, pick again!')
             }
-        }while (logout == false)
+        }while (loginSuccess == true)
     }
 
-    App()
-
-
+    App();
 </script>
