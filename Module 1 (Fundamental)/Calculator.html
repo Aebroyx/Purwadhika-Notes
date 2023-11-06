@@ -1,0 +1,35 @@
+<script>
+const Addition = (num1, num2) => {
+    result = num1 + num2
+    return result
+}
+
+const Subtraction = (num1, num2) => {
+    result = num1 - num2
+    return result
+}
+
+const Multiplication = (num1, num2) => {
+    result = num1 * num2
+    return result
+}
+
+const Division = (num1, num2) => {
+    result = num1 / num2
+    return result
+}
+
+const app = () => {
+    num1 = Number(prompt('Input your first number:'))
+    num2 = Number(prompt('Input your second number:'))
+
+    operation = prompt('Pick the operation:\n + Addition\n - Subtraction\n * Multiplication\n / Division')
+
+    operation == '+'? alert(`${num1} + ${num2} = ${Addition(num1,num2)}`):
+    operation == '-'? alert(`${num1} - ${num2} = ${Subtraction(num1,num2)}`):
+    operation == '*'? alert(`${num1} * ${num2} = ${Multiplication(num1,num2)}`):
+    operation == '/'? alert(`${num1} / ${num2} = ${Division(num1,num2)}`):
+    alert('ERROR')
+}
+app()
+</script>

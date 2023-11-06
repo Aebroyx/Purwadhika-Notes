@@ -1,0 +1,17 @@
+<script>
+    const Twitter = () => {
+        let loop = true
+        do {
+            tweet = prompt("Insert tweet: ")
+
+            if (tweet.length > 10) {
+                alert('Too many characters!')
+                loop = true
+            } else {
+                alert(tweet)
+                loop = false
+            }
+        }while (loop == true)
+    }
+    Twitter()
+</script>

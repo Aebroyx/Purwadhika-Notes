@@ -1,0 +1,151 @@
+<script>
+    // nampung username password
+    const username = 'jcwd'
+    const password = 'abc123'
+
+    // class database untuk dipanggil supaya bisa buat array object market baru
+    class Products{
+        constructor(name, price, unit) {
+            this.name = name,
+            this.price = price,
+            this.unit = unit
+        }
+    }
+
+    const products = [new Products('Wortel', 10000, 'kg'), new Products('Daging Sapi Australia', 300000, 'kg')]
+
+    const showProducts = (products) => {
+        let listProducts = ''
+
+        for(let i=0; i<products.length; i++) {
+            listProducts += `${i+1}. ${products[i].name} = Rp.${products[i].price.toLocaleString('id-ID')} /${products[i].unit}\n`
+        }
+        return listProducts
+    }
+
+    // Contoh Cara buat function per feature CRUD
+    // Kevin
+    const createProduct = () => {
+        let productName = prompt(`List Products:\n${showProducts(products)}\nInput product name:`)
+        let productPrice = Number(prompt('Input product price:'))
+        let productUnit = prompt('Input product unit:')
+
+        products.push(new Products(productName, productPrice, productUnit))
+        alert('Product added sucessfully!')
+    }
+
+    // Abed
+    const updateProduct = () => {
+        let selectProduct = Number(prompt(`List Products: \n ${showProducts(products)}\n select product:`))
+        let productName = prompt (`Input product name`)
+        let productPrice = Number( prompt (`Input product price`))
+        let productUnit = prompt(`Input Product Unit`)
+
+        products[selectProduct -1].name = productName
+        products[selectProduct -1].price = productPrice
+        products[selectProduct -1].unit = productUnit
+        
+        alert('Product Updated Successfull')
+    }
+
+    // Bulan
+    function productList() {
+    let productListMessage = "Product List to delete:\n";
+    
+    for (const product of products) {
+        productListMessage += `${product.id}. ${product.name} - ${product.price.toFixed(2)} - ${product.unit}\n`;
+    }
+
+    return productListMessage;
+    }
+
+    function generateMenu() {
+    let menuMessage = "Menu: \n";
+    let menus = [
+        {
+            id: 1,
+            title: "List product"
+        },
+        {
+            id: 2,
+            title: "Delete product"
+        }
+    ];
+
+    for (const menu of menus) {
+        menuMessage += `${menu.id} - ${menu.title}\n`;
+    }
+
+    return menuMessage;
+    }
+
+function deleteProduct(products, idx) {
+
+    console.log(products, "TO DELETE >>");
+
+    const index = products.indexOf(idx);
+    if (index > -1) { // only splice array when item is found
+        products.splice(index, 1); // 2nd parameter means remove one item only
+    }
+
+    return products;
+}
+    /*
+    const deleteProduct = () => {
+    let selectProduct = prompt(`List of Products:\n ${showProducts(products)}`)
+    const index = products.indexOf();
+
+        if (index > -1) { // only splice array when item is found
+            products.splice(index, 1); // 2nd parameter means remove one item only
+            alert('Product Deleted Succesfully')
+        } else {
+            alert('Product Not Found')
+        }
+    }
+    */
+
+    // function main app
+    const App = () => {
+        // do while buat login (jika logih failed balik ke input username and password)
+        let loginSuccess = false
+        do {
+           let inputUsern = prompt('Insert Username:')
+           let inputPassword = prompt('Insert Password:')
+
+            if (inputUsern == username && inputPassword == password) {
+                loginSuccess == true
+            } else {
+                alert('Wrong username or password!')
+                loginSuccess == false
+            }
+        } while(loginSuccess = false)
+
+        let logout = false
+        do {
+            selectedInput = prompt(
+                `Welcome ${username}!\n1. Product List\n2. Create Product\n3. Update Product\n4. Delete Product\n5. Logout`)
+
+            if (selectedInput == '1') {
+                alert(`List Products:\n${showProducts(products)}`)
+            } else if (selectedInput == '2') {
+                createProduct()
+            } else if (selectedInput == '3') {
+                updateProduct()
+            } else if (selectedInput == '4') {
+                let deletedProduct = Number(prompt(showProducts(products)));
+                products.splice(deletedProduct - 1, 1); // 2nd parameter means remove one item only
+                // selectedMenu = null;
+                console.log(products, "DELETED PRODUCT")
+                alert("Produk berhasil di hapus")
+            } else if (selectedInput == '5') {
+                logout = true
+            } else {
+                alert('Invalid choice, pick again!')
+            }
+        }while (logout == false)
+    }
+
+    App()
+
+
+</script>
