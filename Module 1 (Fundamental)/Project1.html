@@ -41,11 +41,15 @@
         let productPrice = Number( prompt (`Input product price`))
         let productUnit = prompt(`Input Product Unit`)
 
-        products[selectProduct -1].name = productName
-        products[selectProduct -1].price = productPrice
-        products[selectProduct -1].unit = productUnit
+        if (selectProduct > products.length) {
+            alert('Product Not Found!')
+        } else {
+            products[selectProduct -1].name = productName
+            products[selectProduct -1].price = productPrice
+            products[selectProduct -1].unit = productUnit
         
-        alert('Product Updated Successfull')
+            alert('Product Updated Successfull')
+        }
     }
 
     // Bulan
@@ -111,12 +115,11 @@ function deleteProduct(products, idx) {
         while (loginSuccess == false) {
            let inputUsern = prompt('Insert Username:')
            let inputPassword = prompt('Insert Password:')
-
             if (inputUsern == username && inputPassword == password) {
-                loginSuccess == true
+                loginSuccess = true
             } else {
                 alert('Wrong username or password!')
-                loginSuccess == false
+                loginSuccess = false
             }
         }
 
