@@ -53,60 +53,84 @@
     }
 
     // Bulan
-    function productList() {
-    let productListMessage = "Product List to delete:\n";
-    
-    for (const product of products) {
-        productListMessage += `${product.id}. ${product.name} - ${product.price.toFixed(2)} - ${product.unit}\n`;
-    }
-
-    return productListMessage;
-    }
-
-    function generateMenu() {
-    let menuMessage = "Menu: \n";
-    let menus = [
-        {
-            id: 1,
-            title: "List product"
-        },
-        {
-            id: 2,
-            title: "Delete product"
-        }
-    ];
-
-    for (const menu of menus) {
-        menuMessage += `${menu.id} - ${menu.title}\n`;
-    }
-
-    return menuMessage;
-    }
-
-function deleteProduct(products, idx) {
-
-    console.log(products, "TO DELETE >>");
-
-    const index = products.indexOf(idx);
-    if (index > -1) { // only splice array when item is found
-        products.splice(index, 1); // 2nd parameter means remove one item only
-    }
-
-    return products;
-}
-    /*
     const deleteProduct = () => {
-    let selectProduct = prompt(`List of Products:\n ${showProducts(products)}`)
-    const index = products.indexOf(products);
+        let deletedProduct = Number(prompt(showProducts(products)));
+                products.splice(deletedProduct - 1, 1); // 2nd parameter means remove one item only
+                // selectedMenu = null;
+                alert("Produk berhasil di hapus")
+    }
 
-        if (index > -1) { // only splice array when item is found
-            products.splice(index, 1); // 2nd parameter means remove one item only
-            alert('Product Deleted Succesfully')
-        } else {
-            alert('Product Not Found')
+    // Aboy
+    const sortProduct = () => {
+        let selectSort = prompt('Sort By:\n1. Name\n2. Price')
+        let selectSort2 = prompt('Sort By:\n1. Ascending\n 2. Descending')
+
+        let tempArrName = []
+        let tempArrPrice = []
+        let result = []
+        for (i = 0; i < products.length; i++) {
+            tempArrName.push(products[i].name)
+        }
+
+        for (i = 0; i < products.length; i++) {
+            tempArrPrice.push(products[i].price)
+        }
+        
+        if(selectSort == '1' && selectSort2 == '1') {
+            tempArrName = tempArrName.sort()
+            for (let item of tempArrName) {
+                for (let i of products) {
+                    if(item === i.name) {
+                        result.push(i)
+                    }
+                }
+            }
+            alert(showResults(result))
+
+        } else if (selectSort == '1' && selectSort2 == '2') {
+            tempArrName = tempArrName.sort().reverse()
+            for (let item of tempArrName) {
+                for (let i of products) {
+                    if(item === i.name) {
+                        result.push(i)
+                    }
+                }
+            }
+            alert(showResults(result))
+
+        } else if (selectSort == '2' && selectSort2 == '1') {
+            tempArrPrice = tempArrPrice.sort((a, b) => a - b)
+            for (let item of tempArrPrice) {
+                for (let i of products) {
+                    if(item === i.price) {
+                        result.push(i)
+                    }
+                }
+            }
+            alert(showResults(result))
+            
+        } else if (selectSort == '2' && selectSort2 == '2') {
+            tempArrPrice = tempArrPrice.sort((a, b) => b - a)
+            for (let item of tempArrPrice) {
+                for (let i of products) {
+                    if(item === i.price) {
+                        result.push(i)
+                    }
+                }
+            }
+            alert(showResults(result))
         }
     }
-    */
+
+    const showResults = (result) => {
+        let listResults = ''
+
+        for(let i=0; i<result.length; i++) {
+            listResults += `${i+1}. ${result[i].name} = Rp.${result[i].price.toLocaleString('id-ID')} /${result[i].unit}\n`
+        }
+        return listResults
+    }
+    
 
     // function main app
     const App = () => {
@@ -125,7 +149,7 @@ function deleteProduct(products, idx) {
 
         do {
             selectedInput = prompt(
-                `Welcome ${username}!\n1. Product List\n2. Create Product\n3. Update Product\n4. Delete Product\n5. Logout`)
+                `Welcome ${username}!\n1. Product List\n2. Create Product\n3. Update Product\n4. Delete Product\n5. Sort Product\n6. Logout`)
 
             if (selectedInput == '1') {
                 alert(`List Products:\n${showProducts(products)}`)
@@ -134,12 +158,10 @@ function deleteProduct(products, idx) {
             } else if (selectedInput == '3') {
                 updateProduct()
             } else if (selectedInput == '4') {
-                let deletedProduct = Number(prompt(showProducts(products)));
-                products.splice(deletedProduct - 1, 1); // 2nd parameter means remove one item only
-                // selectedMenu = null;
-                console.log(products, "DELETED PRODUCT")
-                alert("Produk berhasil di hapus")
+                deleteProduct()
             } else if (selectedInput == '5') {
+                sortProduct()
+            } else if (selectedInput == '6') {
                 loginSuccess = false
             } else {
                 alert('Invalid choice, pick again!')
