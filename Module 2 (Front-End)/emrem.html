@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* if the root is not declared or no parent has no declared px, then both em and rem uses 16px as reference */
+        /* rem will always multiply by refering to the root */
+        :root{
+            font-size: 12px;
+        }
+        body {
+            font-size: 25px;
+        }
+        /* since the parent is 30px, it would display 60px after 2em */
+        .parent {
+            font-size: 30px;
+        }
+
+        /* em is like a multiplier to the original/parent unit (in this case 2 em means twice as big/200%) */
+        /* em will multiply to the closest parent */
+        p{
+            font-size: 2em;
+        }
+
+        /* since h1 uses rem it refers to the root which is 12px. 3rem = 3*12 = 36px */
+        h1 {
+            font-size: 3rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- the p tag is inside a div tag which is the parent, hence the em will follow the parent -->
+    <div class="parent">
+        <p>
+            Purwadhika
+        </p>
+    </div>
+
+    <div>
+        <!-- since h1 has a styling of rem, it will follow the root -->
+        <h1>
+            BSD
+        </h1>
+    </div>
+    
+</body>
+</html>

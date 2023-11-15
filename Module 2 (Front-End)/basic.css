@@ -1,0 +1,15 @@
+/* External Styling */
+/* this makes all div tags hotpink */
+div {
+    color: hotpink;
+}
+
+/* Id Selector */
+#title{
+    color: green;
+}
+
+/* Class Selector */
+.newtitle{
+    color: red;
+}
