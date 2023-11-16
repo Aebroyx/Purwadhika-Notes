@@ -1,0 +1,135 @@
+<!-- Sangalabror Pujianto -->
+<script>
+    // Declaration of classes and array of objects for database market
+    class Database {
+        constructor(id, name, stock, price, unit)  {
+            this.id = id
+            this.name = name
+            this.stock = stock
+            this.price = price
+            this.unit = unit
+        }
+    }
+
+    const products = [
+        new Database(1, 'iPhone', 50, 20000, 'pcs'),
+        new Database(2, 'Macbook', 25, 30000, 'pcs'),
+        new Database(3, 'iPad', 50, 15000, 'pcs'),
+        new Database(4, 'Apple Watch', 100, 8000, 'pcs'),
+        new Database(5, 'iPod', 100, 5000, 'pcs')
+    ]
+
+    const cart = []
+</script>
+
+<script>
+    // All functions and variable that will be used in app
+
+    // Variable isLogin to maintain loop till otherwise checkout
+    let isLogin = true
+    // Variable to input quantity
+    let inputQty = 0
+    // Variable to select product
+    let selectProduct = 0
+
+    // Function to show all products
+    const showProducts = (products) => {
+        let listProducts = ''
+
+        for(let i=0; i<products.length; i++) {
+            listProducts += `${products[i].id}. ${products[i].name} (Stock: ${products[i].stock}) = Rp.${products[i].price.toLocaleString('id-ID')} /${products[i].unit}\n`
+        }
+        return listProducts
+    }
+
+    const addToCart = (selectProduct, inputQty) => {
+        let inCart = false
+
+        for (let item of cart){
+            if (item.id == products[selectProduct].id) {
+                inCart = true
+            }
+        }
+
+        inCart == true? cart[selectProduct].stock = inputQty:
+        inCart == false? cart.push(new Database(products[selectProduct].id, products[selectProduct].name, inputQty, products[selectProduct].price, products[selectProduct].unit)): null
+    }
+
+    const buyItem = () => {
+        let isTrue = true
+        let tempQty = 0
+        while(isTrue == true){
+            do {
+            selectProduct = prompt(`Select Our Product!\n${showProducts(products)}`) - 1
+            } while (selectProduct >= products.length || selectProduct == -1)
+            //selectProduct > products.length? alert('Product Not Found'): null
+
+            inputQty = Number(prompt('Input Quantity of Product:'))
+            tempQty = inputQty
+            for(let item of cart) {
+                item.id == selectProduct + 1? tempQty = inputQty + item.stock: null
+            }
+
+            if (tempQty <= products[selectProduct].stock) {
+                console.log('ini: '+ tempQty)
+                addToCart(selectProduct, tempQty)
+                alert('Product added to cart')
+                isTrue = false
+            } else {
+                alert('Not Enough Stock!')
+            }
+        }
+    }
+
+    const showCart = (cart) => {
+        let listCart = ''
+
+        for(let i=0; i<cart.length; i++) {
+            listCart += `${cart[i].id}. ${cart[i].name} = Rp.${cart[i].price.toLocaleString('id-ID')}/${cart[i].unit}\n x ${cart[i].stock} = ${cart[i].price*cart[i].stock}\n`
+        }
+        return listCart
+    }
+
+    const Cart = () => {
+        alert(`Your Cart has ${cart.length} Item(s) Waiting!\n${showCart(cart)}`)
+    }
+
+    const Checkout = () => {
+        let isTrue = true
+        let totalPerItem = 0
+        let total = 0
+        for (i = 0; i < cart.length; i++) {
+            totalPerItem = cart[i].price * cart[i].stock
+            total += totalPerItem
+        }
+
+        do {
+            let cash = prompt(`Please recheck Your Item Before Checkout!\n${showCart(cart)}\n+ --------------- +\nTotal: ${total.toLocaleString('id-ID')}\nYour Cash:`)
+
+            if (cash >= total){ 
+                alert('Thank you for your purchase!')
+                isTrue = false
+                isLogin = false
+            } else {
+                alert('Not Enough Cash, please insert more cash!')
+                isTrue = true
+            }
+        } while (isTrue == true)
+    }
+
+</script>
+
+<script>
+    const app = () => {
+        do {
+            menuSelect = prompt('Select Menu:\n1. Buy Item\n2. See Your Cart\n3. Checkout')
+        
+            menuSelect == 1? buyItem():
+            menuSelect == 2? Cart():
+            menuSelect == 3? Checkout():
+            alert('Invalid Choice Pick Again!')
+        }while(isLogin == true)
+    }
+
+    app();
+</script>
