@@ -1,0 +1,35 @@
+.box {
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+img {
+    margin-top: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80%;
+    width: 80%;
+}
+
+.title {
+    text-align: center;
+    font-family: 'Marvel';
+}
+
+.text {
+    text-align: center;
+    font-family: 'Marvel';
+}
+
+.btn {
+    text-align: center;
+    font-family: 'Marvel';
+    padding-bottom: 20px;
+}
+
+.btn2 {
+    background-color: rgba(98, 0, 255, 0.578);
+    font-family: 'Marvel';
+    padding: 10px 30px 10px 30px;
+}

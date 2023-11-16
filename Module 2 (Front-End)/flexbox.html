@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="flexbox.css">
+</head>
+<body>
+    <!-- 
+        Flexbox: Digunakan untuk mengatur posisi secara 1 dimensi
+            1. Punya parent (pembungkus)
+            2. Parent = display: flex
+     -->
+
+     <div class="wrapper1">
+        <div style="background-color: white;">
+            Hello World
+        </div>
+        <h1>
+            In flex, all child element becomes inline element
+        </h1>
+     </div>
+
+     <h2>
+        where as not in flex
+     </h2>
+     <h3>
+        its in box element
+     </h3>
+     <p>
+        because in regular flex it uses default flex direction row
+     </p>
+
+     <!-- Flex Direction -->
+     <h1> however if we use flex direction column, itll be like box element</h1>
+     <div class="wrapper2">
+        <div>
+            hello world again
+        </div>
+        <h1>it becomes box element</h1>
+     </div>
+
+     <!-- Example use of Flex -->
+
+     <div class="container">
+        <div>
+            Product 1
+        </div>
+        <div>
+            Product 2
+        </div>
+        <div>
+            product 3
+        </div>
+     </div>
+
+     <div class="container2">
+        <div>
+            Product 1
+        </div>
+        <div>
+            Product 2
+        </div>
+        <div>
+            product 3
+        </div>
+     </div>
+</body>
+</html>
