@@ -1,0 +1,26 @@
+/* to center we can use flex but not in this exercise */
+/* body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+} */
+
+.container {
+    text-align: center;
+}
+
+img {
+    height: 100px;
+    width: 150px;
+}
+
+.tbl {
+    background-color: orange;
+}
+
+table, tr, th, td{
+    border: 1px solid black;
+    text-align: center;
+}

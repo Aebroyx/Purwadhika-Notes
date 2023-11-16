@@ -1,0 +1,61 @@
+/* html leaves a pixel on left side this is how to get rid of it */
+body {
+    margin: 0px;
+}
+
+.box-1 {
+    width: 150px;
+    height: 150px;
+    background-color: salmon;
+}
+
+.box-2 { 
+    position: relative;
+    top: 80px;
+    left: 30px;
+    width: 150px;
+    height: 150px;
+    background-color: blueviolet;
+}
+
+.box-3 {
+    width: 150px;
+    height: 150px;
+    background-color: cadetblue;
+}
+
+.box-4 {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+}
+
+.box-5 { 
+    position: absolute;
+    top: 30px;
+    left: 100px;
+    width: 150px;
+    height: 150px;
+    background-color: green;
+}
+
+.box-6 {
+    width: 150px;
+    height: 150px;
+    background-color: blue;
+}
+
+.navbar {
+    width: 100%;
+    background-color: gold;
+    position: fixed;
+    top: 0px;
+}
+
+.socmed{
+    position: sticky;
+    top: 100px;
+    width: 100px;
+    height: 100px;
+    background-color: aqua;
+}

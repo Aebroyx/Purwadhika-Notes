@@ -1,0 +1,53 @@
+.wrapper1 {
+    background-color: gray;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper2 {
+    background-color: gray;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    margin-top: 50px;
+    display: flex;
+    gap: 10px;
+}
+
+.container div:nth-child(even){
+    border: 1px solid black;
+    height: 200px;
+    flex: 2;
+}
+
+.container div:nth-child(odd) {
+    border: 1px solid black;
+    height: 200px;
+    flex: 1;
+}
+
+.container2 {
+    margin-top: 50px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.container2 div:nth-child(even){
+    border: 1px solid black;
+    height: 200px;
+    width: 125px;
+}
+
+.container2 div:nth-child(odd) {
+    border: 1px solid black;
+    height: 200px;
+    width: 125px;
+}

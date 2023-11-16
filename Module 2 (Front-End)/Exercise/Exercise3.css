@@ -1,0 +1,38 @@
+.container {
+    height: 250px;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(9, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.container div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container div:nth-child(even) {
+    background-color: slateblue;
+}
+.container div:nth-child(odd) {
+    background-color: cadetblue;
+}
+
+.child1 {
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+
+.child2 {
+    grid-column-start: 4;
+    grid-column-end: 10;
+}
+
+.child3 {
+    grid-column-start: 1;
+    grid-column-end: 5;
+    grid-row-start: 2;
+    grid-row-end: 4;
+}
+
