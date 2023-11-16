@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="text">
+        Purwawdhika
+    </h1>
+    <input type="text" placeholder="Username" class="inputs">
+    <input type="password" placeholder="Password" class="inputs">
+    <button id="button" onclick="changeText()">
+        Change Text
+    </button>
+    
+</body>
+</html>
+
+<script>
+    // const result = document.getElementById("button")
+    // console.log(result) // result will be the element button above with id-button
+
+    const changeText = () => {
+        const heading = document.getElementById('text')
+        console.log(document.getElementsByClassName("inputs")[0].value)
+        console.log(document.getElementsByClassName("inputs")[1].value)
+        heading.innerHTML = "Logged In"
+    }
+</script>
