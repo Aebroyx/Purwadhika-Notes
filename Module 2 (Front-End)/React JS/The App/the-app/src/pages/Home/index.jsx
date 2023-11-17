@@ -1,9 +1,8 @@
-import Navbar from "../../Components/navbar"
+import Navbar from "../../Components/Navbar"
 // usually made with regular function since u can export it easily like this:
 export default function Home() {
     return(
         <>
-            <Navbar />
             <h1>
                 Home Page
              </h1>
