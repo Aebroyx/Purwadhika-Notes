@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Navbar from './Components/Navbar/Index'
+import toast, { Toaster } from 'react-hot-toast';
 
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
 
   return (
     <>
+      <Toaster />
       <Navbar />
       <Outlet />
     </>

@@ -54,6 +54,15 @@ export default function Hooks(){
             <h1>
                 Hooks Page
             </h1>
+            <button className="btn bg-blue-200" onClick={() => setNumber(number+1)}>
+                +
+            </button>
+            <h2>
+                {number}
+            </h2>
+            <button className="btn bg-blue-200" onClick={() => setNumber(number-1)}>
+                -
+            </button>
             <ul>
                 {data.map((item, index) => {
                     return(
