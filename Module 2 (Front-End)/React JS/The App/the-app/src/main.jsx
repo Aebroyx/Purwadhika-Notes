@@ -14,15 +14,28 @@ import {
 // Pages
 import Home from './Pages/Home';
 import Profile from './Pages/Profile';
-import Props from './Pages/Props'
+import Props from './Pages/Props';
+
+// Pages 2 (Class Component)
+import Home2 from './Pages/Home2';
+import Profile2 from './Pages/Profile2';
+import Hooks from './Pages/Hooks/Index.jsx'
 
 const router = createBrowserRouter([
   {
     element: <App />,
     children: [
+      // {
+      //   path: "/",
+      //   element: <Home />
+      // },
       {
         path: "/",
-        element: <Home />
+        element: <Home2 />
+      },
+      {
+        path: '/profile2',
+        element: <Profile2 />
       },
       {
         path: "/profile",
@@ -31,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: "/props",
         element: <Props />
+      },
+      {
+        path: "/hooks",
+        element: <Hooks />
       }
     ]
   }

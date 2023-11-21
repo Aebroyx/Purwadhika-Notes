@@ -1,28 +1,31 @@
 import React, { useState } from 'react';
 import Login from './Login';
+import { GiHamburgerMenu } from "react-icons/gi";
+
 
 export default function Navbar(){
     const [isSideNavVisible, setIsSideNavVisible] = useState(false);
     
     const toggleSideNav = () => {
         setIsSideNavVisible(!isSideNavVisible);
-      };
+    };
 
     const closeSideNav = () => {
         setIsSideNavVisible(false);
-    };  
+    };
+      
     return(
         <>
             <nav>
-                <div className="navbar bg-violet-500 bg-opacity-50">
-                    <button onClick={toggleSideNav} className="text-slate-950 p-2">
-                    {/* Insert your three stripes icon here */}
-                        ☰
+                <div className="navbar bg-violet-500 bg-opacity-50 sticky top-0">
+                    <div className='pr-3'>
+                        <button onClick={toggleSideNav} className="text-slate-950 p-2 btn btn-ghost btn-circle">
+                        <GiHamburgerMenu />
                     </button>
-                    <div className="flex-1">
-                        <a className="text-slate-950 text-xl">Autosave Store</a>
                     </div>
-                    <div className="hidden md:flex justify-center items-center space-x-4 mr-auto">
+                    <div className="flex-1">
+                        <a className="text-slate-950 text-xl pr-20">Autosave Store</a>
+                        <div className="hidden md:flex space-x-4">
                         <div>
                             HOT ITEMS
                         </div>
@@ -32,6 +35,7 @@ export default function Navbar(){
                         <div>
                             COLLABORATION
                         </div>
+                    </div>
                     </div>
                     <Login />
                     <div className="flex-none">
