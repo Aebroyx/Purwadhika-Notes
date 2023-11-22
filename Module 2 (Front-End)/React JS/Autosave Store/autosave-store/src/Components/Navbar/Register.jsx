@@ -1,13 +1,16 @@
 import {useRef} from 'react';
 import RegisterForm from "./RegisterForm"
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import axios from 'axios';
+import { useState } from 'react';
 
 export default function Register() {
     const inputUsername = useRef()
     const inputEmail = useRef()
     const inputPassword = useRef()
     const inputConfirmPassword = useRef()
+
+    const[isLoading, setIsLoading] = useState(false)
 
     const onRegister = async() => {
         try {
@@ -16,11 +19,26 @@ export default function Register() {
             if(!inputEmail.current.value.includes('@')) throw({message: 'Email Not Valid'})
             if(inputPassword.current.value != inputConfirmPassword.current.value) throw({message: 'Password Does Not Match'})
 
+            setIsLoading(true)
+
+            // Check Username or Email Exist or not?
+            const response = await axios.get(`http://localhost:5000/users?email=${inputEmail.current.value}`)
+            
+            if (response.data.length > 0) throw({message: 'Email Already Exist!'})
+
             // Send Post Request
             await axios.post('http://localhost:5000/users', {username: inputUsername.current.value, email: inputEmail.current.value, password: inputPassword.current.value})
+            document.getElementById('my_modal_2').close();
             toast.success('Register Success!')
+
+            inputUsername.current.value = ''
+            inputEmail.current.value = ''
+            inputPassword.current.value = ''
+            inputConfirmPassword.current.value = ''
         } catch (error) {
             toast.error(error.message)    
+        }finally{
+            setIsLoading(false)
         }
     }
 
@@ -48,8 +66,8 @@ export default function Register() {
                             <RegisterForm inputRef={inputConfirmPassword} type="password" label="Confirm Password" />
                         </div>
                     </div>
-                    <button onClick={onRegister} className="btn bg-violet-400 text-white w-full mt-5">
-                        Register
+                    <button disabled={isLoading} onClick={onRegister} className="btn bg-violet-400 text-white w-full mt-5">
+                    {isLoading? 'Loading...':'Register'}
                     </button>
                 </div>
             </dialog>

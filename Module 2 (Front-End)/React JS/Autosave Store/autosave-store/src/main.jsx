@@ -9,6 +9,7 @@ import {
 
 //Pages
 import Home from './Pages/Home/Index.jsx'
+import Product from './Pages/Product/Index.jsx';
 
 const router = createBrowserRouter([
   { 
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />
       },
+      {
+        path: "/product",
+        element: <Product />
+      }
     ]
   }
 ]);

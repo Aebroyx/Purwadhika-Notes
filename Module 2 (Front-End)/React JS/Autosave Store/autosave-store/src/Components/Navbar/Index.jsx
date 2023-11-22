@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import Login from './Login';
 import { GiHamburgerMenu } from "react-icons/gi";
 
+import { useContext } from 'react';
+import { userDataContext } from '../../Context/userDataContext';
+
 
 export default function Navbar(){
     const [isSideNavVisible, setIsSideNavVisible] = useState(false);
@@ -13,36 +16,47 @@ export default function Navbar(){
     const closeSideNav = () => {
         setIsSideNavVisible(false);
     };
-      
+    
+    const { userData, setUserData } = useContext(userDataContext);
+
     return(
         <>
-            <nav>
-                <div className="navbar bg-violet-500 bg-opacity-50 sticky top-0">
+            <nav className='sticky top-0 z-40'>
+                <div className="navbar bg-violet-500 sticky top-0">
                     <div className='pr-3'>
                         <button onClick={toggleSideNav} className="text-slate-950 p-2 btn btn-ghost btn-circle">
                         <GiHamburgerMenu />
                     </button>
                     </div>
                     <div className="flex-1">
-                        <a className="text-slate-950 text-xl pr-20">Autosave Store</a>
-                        <div className="hidden md:flex space-x-4">
-                        <div>
-                            HOT ITEMS
-                        </div>
-                        <div>
-                            THE ORIGINAL HOODIE
-                        </div>
-                        <div>
-                            COLLABORATION
+                        <a className="text-slate-950  text-xl pr-20">Autosave Store</a>
+                        <div className="hidden md:flex space-x-4 text-white">
+                            <div>
+                                HOT ITEMS
+                            </div>
+                            <div>
+                                THE ORIGINAL HOODIE
+                            </div>
+                            <div>
+                                COLLABORATION
+                            </div>
                         </div>
                     </div>
+                    <div>
+                        {
+                            userData?
+                                <button onClick={() => setUserData(null)}>
+                                    <p className='text-white'>Welcome, {userData.username}!</p>
+                                </button>
+                            :
+                                <Login />
+                        }
                     </div>
-                    <Login />
                     <div className="flex-none">
                         <label tabIndex={0} className="btn btn-ghost btn-circle">
                             <div className="indicator">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                            <span className="badge badge-sm indicator-item">8</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                            <span className="badge badge-sm indicator-item text-white">8</span>
                             </div>
                         </label>
                     </div>

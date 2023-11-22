@@ -11,6 +11,111 @@
       "email": "dummy1@gmail.com",
       "password": "abc123",
       "id": 2
+    },
+    {
+      "username": "dummy2",
+      "email": "dummy2@gmail.com",
+      "password": "abc123",
+      "id": 3
+    },
+    {
+      "username": "dummy3",
+      "email": "dummy3@gmail.com",
+      "password": "abc123",
+      "id": 4
+    }
+  ],
+
+  "products": [
+    {
+      "id": 1,
+      "name": "Autosave Original T-Shirt White",
+      "price": "149000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "100% Cotton",
+      "image": "./../src/assets/shirtcard.png",
+      "category": "t-shirt"
+    },
+    {
+      "id": 2,
+      "name": "Autosave Graphic Print T-Shirt Black",
+      "price": "159000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "Cotton Blend",
+      "image": "./../src/assets/shirtcard.png",
+      "category": "t-shirt"
+    },
+    {
+      "id": 3,
+      "name": "Autosave Logo Embroidery T-Shirt Blue",
+      "price": "169000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "100% Cotton",
+      "image": "./../src/assets/shirtcard.png",
+      "category": "t-shirt"
+    },
+    {
+      "id": 4,
+      "name": "Autosave Striped Pattern T-Shirt Red",
+      "price": "159000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "Cotton Blend",
+      "image": "./../src/assets/shirtcard.png",
+      "category": "t-shirt"
+    },
+    {
+      "id": 5,
+      "name": "Autosave Vintage Logo T-Shirt Green",
+      "price": "149000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "100% Cotton",
+      "image": "./../src/assets/shirtcard.png",
+      "category": "t-shirt"
+    },
+    {
+      "id": 6,
+      "name": "Autosave Classic Hoodie Black",
+      "price": "249000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "Cotton Blend",
+      "image": "./../src/assets/hoodiecard.png",
+      "category": "hoodie"
+    },
+    {
+      "id": 7,
+      "name": "Autosave Logo Print Hoodie Grey",
+      "price": "259000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "Fleece",
+      "image": "./../src/assets/hoodiecard.png",
+      "category": "hoodie"
+    },
+    {
+      "id": 8,
+      "name": "Autosave Zip-Up Hoodie Navy",
+      "price": "269000",
+      "size": ["s", "m", "l", "xl", "xxl"],
+      "material": "Cotton Blend",
+      "image": "./../src/assets/hoodiecard.png",
+      "category": "hoodie"
+    },
+    {
+      "id": 9,
+      "name": "Autosave Logo Embroidery Hat Black",
+      "price": "99000",
+      "size": ["one size"],
+      "material": "Polyester",
+      "image": "./../src/assets/capcard.png",
+      "category": "hat"
+    },
+    {
+      "id": 10,
+      "name": "Autosave Classic Logo Hat White",
+      "price": "89000",
+      "size": ["one size"],
+      "material": "Cotton Blend",
+      "image": "./../src/assets/capcard.png",
+      "category": "hat"
     }
   ]
 }
