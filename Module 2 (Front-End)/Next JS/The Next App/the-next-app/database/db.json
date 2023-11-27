@@ -1,0 +1,39 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Apple",
+            "price": 10000,
+            "unit": "Kg",
+            "image": "https://cdn.britannica.com/22/187222-050-07B17FB6/apples-on-a-tree-branch.jpg"
+        },
+        {
+            "id": 2,
+            "name": "Banana",
+            "price": 5000,
+            "unit": "Dozen",
+            "image": "https://images.everydayhealth.com/images/diet-nutrition/all-about-bananas-nutrition-facts-health-benefits-recipes-and-more-rm-722x406.jpg"
+        },
+        {
+            "id": 3,
+            "name": "Carrot",
+            "price": 2000,
+            "unit": "Kg",
+            "image": "https://extension.usu.edu/nutrition/images/carrot-head.png"
+        },
+        {
+            "id": 4,
+            "name": "Milk",
+            "price": 3000,
+            "unit": "Liter",
+            "image": "https://cdn.britannica.com/77/200377-050-4326767F/milk-splashing-glass.jpg"
+        },
+        {
+            "id": 5,
+            "name": "Bread",
+            "price": 1500,
+            "unit": "Dozen",
+            "image": "https://www.bhg.com/thmb/ov2S31znAvSCXqrpgJQ8rwBgzp8=/2250x0/filters:no_upscale():strip_icc()/BHG-milk-bread-4CdeIL1uKGyB5ryU8J_EED-aaa76729c86a413ca7500029edba79f0.jpg"
+        }
+    ]
+}

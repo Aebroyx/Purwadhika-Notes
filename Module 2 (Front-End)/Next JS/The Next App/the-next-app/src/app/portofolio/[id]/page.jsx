@@ -1,4 +1,4 @@
-import { getItem } from "@/app/utils/getItem"
+import { getItem } from "@/utils/getItem"
 
 export default async function Users(props) {
     const id = props.params.id
