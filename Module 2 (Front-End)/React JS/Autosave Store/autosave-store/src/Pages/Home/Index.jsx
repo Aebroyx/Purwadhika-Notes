@@ -1,6 +1,7 @@
 import FrontImage1 from './../../assets/frontimg1.png'
 import FrontImage2 from './../../assets/frontimg2.png'
 import { axiosInstance } from './../../Lib/AxiosInstance'
+import { Link } from 'react-router-dom'
 
 //Components
 import ProductCard from '../../Components/ProductCard.jsx/Index'
@@ -45,11 +46,27 @@ export default function Home() {
             </h1>
             <div className='grid grid-cols-2 px-4 sm:grid-cols-2 gap-4 md:grid-cols-2 gap-4 lg:grid-cols-3 gap-4 xl:grid-cols-4 gap-4 2xl:grid-cols-4 gap-4'>
                 {
+                    !products.length?
+                    <div className='flex'>
+                        <div className="flex flex-col gap-4 w-52">
+                            <div className="skeleton h-32 w-full"></div>
+                            <div className="skeleton h-4 w-28"></div>
+                            <div className="skeleton h-4 w-full"></div>
+                            <div className="skeleton h-4 w-full"></div>
+                        </div>
+                        <div className="flex flex-col gap-4 w-52">
+                            <div className="skeleton h-32 w-full"></div>
+                            <div className="skeleton h-4 w-28"></div>
+                            <div className="skeleton h-4 w-full"></div>
+                            <div className="skeleton h-4 w-full"></div>
+                        </div>
+                    </div>
+                    :
                     products.map((item, index) => {
                         return(
                             item.category == "t-shirt"?
                             <>
-                                <ProductCard data={item} />
+                                    <ProductCard data={item} />
                             </>
                             :
                             null

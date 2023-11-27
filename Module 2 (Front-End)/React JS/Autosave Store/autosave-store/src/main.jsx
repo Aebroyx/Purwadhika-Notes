@@ -10,6 +10,7 @@ import {
 //Pages
 import Home from './Pages/Home/Index.jsx'
 import Product from './Pages/Product/Index.jsx';
+import DetailProduct from './Pages/DetailProduct/Index.jsx';
 
 const router = createBrowserRouter([
   { 
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: "/product",
         element: <Product />
+      },
+      {
+        path: "/detail-product/:id",
+        element: <DetailProduct />
       }
     ]
   }

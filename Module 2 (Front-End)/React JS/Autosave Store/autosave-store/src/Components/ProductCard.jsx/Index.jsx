@@ -7,7 +7,11 @@ export default function ProductCard(props) {
             <Link to={'/product'}>
             <div className=''>
                 <div className="card bg-base-100 shadow-xl w-full">
-                    <figure><img src={ShirtCard} alt="shirt card" /></figure>
+                    <figure>
+                        <Link to={`/detail-product/${props.data.id}`}>
+                            <img src={ShirtCard} alt="shirt card" />
+                        </Link>
+                    </figure>
                     <div className="card-body">
                         <h2 className="card-title">{props.data.name}</h2>
                         <p>Rp. {props.data.price.toLocaleString('id-ID')}</p>
