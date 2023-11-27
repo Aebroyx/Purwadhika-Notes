@@ -10,8 +10,12 @@ export default function ProductCard(props) {
                     <figure><img src={ShirtCard} alt="shirt card" /></figure>
                     <div className="card-body">
                         <h2 className="card-title">{props.data.name}</h2>
-                        <p>Rp. 149.000</p>
-                        <p>S M L XL XXL</p>
+                        <p>Rp. {props.data.price.toLocaleString('id-ID')}</p>
+                        <p>{props.data.size.map((item, index) => {
+                            return(
+                                ' ' + item
+                            )
+                        })}</p>
                     </div>
                 </div>
             </div>
