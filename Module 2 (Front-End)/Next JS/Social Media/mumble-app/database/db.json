@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "email": "sangalabror@gmail.com",
+      "username": "abrorpujianto",
+      "password": "abc123"
+    },
+    {
+      "email": "kiki@gmail.com",
+      "username": "kikibau",
+      "password": "abc123",
+      "id": 2
+    },
+    {
+      "email": "dummy1@gmail.com",
+      "username": "dummy1",
+      "password": "abc123",
+      "id": 3
+    }
+  ],
+
+  "posts": [
+    {
+        "id": 1,
+        "username": "lonewolf",
+        "image": "post1.png",
+        "caption": "i miss her",
+        "likes": 69
+    },
+    {
+        "id": 2,
+        "username": "siplingkeren",
+        "image": "post2.png",
+        "caption": "njay gw ganteng bgt",
+        "likes": 21
+    }
+  ]
+}
