@@ -1,0 +1,32 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "task": "buy a new gaming laptop"
+    },
+    {
+      "id": 2,
+      "task": "get a girlfriend"
+    },
+    {
+      "id": 3,
+      "task": "create youtube video"
+    },
+    {
+      "id": 4,
+      "task": "create portfolio website"
+    },
+    {
+      "id": 5,
+      "task": "play video games"
+    },
+    {
+      "task": "test",
+      "id": 6
+    },
+    {
+      "task": "test",
+      "id": 7
+    }
+  ]
+}

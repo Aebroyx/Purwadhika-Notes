@@ -35,7 +35,7 @@ export default function Page() {
 
             toast.success('Login Successful')
             // Sends data to action.payload
-            dispatch(setUser(data))
+            dispatch(setUser(data[0]))
             setCookies(data)
 
             setTimeout(() => {

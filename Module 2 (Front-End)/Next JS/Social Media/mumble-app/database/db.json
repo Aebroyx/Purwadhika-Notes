@@ -17,23 +17,42 @@
       "username": "dummy1",
       "password": "abc123",
       "id": 3
-    }
-  ],
-
-  "posts": [
-    {
-        "id": 1,
-        "username": "lonewolf",
-        "image": "post1.png",
-        "caption": "i miss her",
-        "likes": 69
     },
     {
-        "id": 2,
-        "username": "siplingkeren",
-        "image": "post2.png",
-        "caption": "njay gw ganteng bgt",
-        "likes": 21
+      "email": "dummy2@gmail.com",
+      "username": "lonewolf",
+      "password": "abc123",
+      "id": 4
+    },
+    {
+      "email": "dummy3@gmail.com",
+      "username": "sijametkeren",
+      "password": "abc123",
+      "id": 5
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "userId": 4,
+      "image": "post1.png",
+      "caption": "i miss her",
+      "likes": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "id": 2,
+      "userId": 5,
+      "image": "post2.png",
+      "caption": "njay gw ganteng bgt",
+      "likes": [
+        2
+      ]
     }
   ]
 }
