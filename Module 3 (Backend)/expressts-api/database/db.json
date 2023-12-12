@@ -1,1 +1,17 @@
-{"users":[{"id":1,"username":"abrorpujianto","email":"sangalabror@gmail.com","password":"abc123"}]}
+{"users":[{"id":1,"username":"abrorpujianto","email":"sangalabror@gmail.com","password":"abc123"}],
+"login": [
+  {
+    "id": 1,
+    "username": "abrorpujianto",
+    "email": "sangalabror@gmail.com",
+    "password": "abc123"
+  },
+  {
+    "id": 2,
+    "username": "dummy1",
+    "email": "dummy1@gmail.com",
+    "password": "abc123"
+  }
+
+]
+}

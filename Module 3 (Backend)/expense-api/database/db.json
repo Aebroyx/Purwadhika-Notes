@@ -1,0 +1,109 @@
+{
+    "expenses": [
+        {
+            "id": 1,
+            "name": "Bread",
+            "nominal": 45000,
+            "category": "Food & Beverages",
+            "date": "2023-08-01"
+        },
+        {
+            "id": 2,
+            "name": "Coca Cola",
+            "nominal": 7000,
+            "category": "Food & Beverages",
+            "date": "2023-08-01"
+        },
+        {
+            "id": 3,
+            "name": "Fuel",
+            "nominal": 500000,
+            "category": "Transportation",
+            "date": "2023-08-08"
+        },
+        {
+            "id": 4,
+            "name": "Internet Bill",
+            "nominal": 60000,
+            "category": "Utilities",
+            "date": "2023-08-02"
+        },
+        {
+            "id": 5,
+            "name": "Pizza",
+            "nominal": 120000,
+            "category": "Food & Beverages",
+            "date": "2023-08-02"
+        },
+        {
+            "id": 6,
+            "name": "Gasoline",
+            "nominal": 70000,
+            "category": "Transportation",
+            "date": "2023-08-02"
+        },
+        {
+            "id": 7,
+            "name": "Phone Bill",
+            "nominal": 45000,
+            "category": "Utilities",
+            "date": "2023-08-03"
+        },
+        {
+            "id": 8,
+            "name": "Groceries",
+            "nominal": 150000,
+            "category": "Food & Beverages",
+            "date": "2023-08-03"
+        },
+        {
+            "id": 9,
+            "name": "Taxi Ride",
+            "nominal": 80000,
+            "category": "Transportation",
+            "date": "2023-08-03"
+        },
+        {
+            "id": 10,
+            "name": "Electricity Bill",
+            "nominal": 90000,
+            "category": "Utilities",
+            "date": "2023-08-04"
+        },
+        {
+            "id": 11,
+            "name": "Lunch",
+            "nominal": 35000,
+            "category": "Food & Beverages",
+            "date": "2023-08-04"
+        },
+        {
+            "id": 12,
+            "name": "Car Maintenance",
+            "nominal": 200000,
+            "category": "Transportation",
+            "date": "2023-08-04"
+        },
+        {
+            "id": 13,
+            "name": "Water Bill",
+            "nominal": 25000,
+            "category": "Utilities",
+            "date": "2023-08-05"
+        },
+        {
+            "id": 14,
+            "name": "Dinner",
+            "nominal": 50000,
+            "category": "Food & Beverages",
+            "date": "2023-08-05"
+        },
+        {
+            "id": 15,
+            "name": "Plane Ticket",
+            "nominal": 1200000,
+            "category": "Transportation",
+            "date": "2023-08-05"
+        }
+    ]
+}

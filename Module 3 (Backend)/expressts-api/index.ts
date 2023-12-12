@@ -146,6 +146,59 @@ app.delete('/users/:id', (req: Request, res: Response) => {
     }
 })
 
+// EXERCISE: Create endpoint login with:
+// method: GET
+// login by: email/username and password
+
+interface ILogin {
+    id: number
+    username: string
+    email: string
+    password: string
+}
+
+app.get('/login', (req: Request, res: Response) => {
+    try {
+        // Step-1 Reading File "db.json"
+        // use JSON.parse to covert from buffer to json utf-8 format
+        const findAllUsers: {login: Array<IUsers>} = fsRead()
+
+        // Step-2 Get Resource Body from client
+        const data: any  = req.query
+        console.log(data)
+
+        let dataLogin: object | null = null
+
+        // Comparing data body and data in db.json
+        for (const item of findAllUsers.login) {
+            if (item.username === data.username && item.password === data.password || item.email === data.email && item.password === data.password) {
+                dataLogin = {id: item.id, username: item.username, email: item.email}
+            } else {
+                continue;
+            }    
+        }
+
+        if (dataLogin) {
+            res.status(200).send({
+                error: false,
+                message: 'Login Success!',
+                data: dataLogin
+            })
+        } else {
+            throw {status: 400, message: 'Wrong Username or Password!'}
+        }
+    }
+    catch (error: any) {
+        res.status(error.status || 500).send({
+            error: true,
+            message: error.message || 'Something went wrong!',
+            data: null
+        })
+    }
+})
+
+
+
 app.listen(port, () => {
     console.log(`[SERVER] Server Running on Port ${port}`)
 })
