@@ -147,10 +147,10 @@ app.get('/expenses-by-date', (req, res) => {
 app.get('/expenses-by-category', (req, res) => {
     try {
         const database = JSON.parse(fs_1.default.readFileSync('./database/db.json', 'utf-8'));
-        const { category } = req.query;
+        const { categoryId } = req.query;
         let totalExpense = 0;
         database.expenses.forEach((item) => {
-            if (item.category === category) {
+            if (item.categoryId === Number(categoryId)) {
                 totalExpense += item.nominal;
             }
         });

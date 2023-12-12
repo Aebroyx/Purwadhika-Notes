@@ -9,8 +9,13 @@ interface IExpense {
     id: number
     name: string
     nominal: number
-    category: string
+    categoryId: number
     date: string
+}
+
+interface ICategory {
+    id: number
+    name: string
 }
 
 // Get Expense List
@@ -144,7 +149,7 @@ app.delete('/expenses/:id', (req: Request, res: Response) => {
 // Get Total Expense by Date Range
 app.get('/expenses-by-date', (req: Request, res: Response) => {
     try {
-        const database: { expenses: Array<IExpense> } = JSON.parse(fs.readFileSync('./database/db.json', 'utf-8'));
+        const database: { expenses: Array<IExpense>} = JSON.parse(fs.readFileSync('./database/db.json', 'utf-8'));
 
         const range: any = req.query;
         let totalExpense = 0;
@@ -172,13 +177,13 @@ app.get('/expenses-by-date', (req: Request, res: Response) => {
 // Get Total Expense by Category
 app.get('/expenses-by-category', (req: Request, res: Response) => {
     try {
-        const database: { expenses: Array<IExpense> } = JSON.parse(fs.readFileSync('./database/db.json', 'utf-8'));
+        const database: { expenses: Array<IExpense> , categories: Array<ICategory>} = JSON.parse(fs.readFileSync('./database/db.json', 'utf-8'));
 
-        const {category} = req.query;
+        const {categoryId} = req.query;
         let totalExpense = 0;
 
         database.expenses.forEach((item) => {
-            if (item.category === category) {
+            if (item.categoryId === Number(categoryId)) {
                 totalExpense += item.nominal;
             }
         })
