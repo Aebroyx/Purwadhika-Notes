@@ -29,7 +29,7 @@ Hello, Purwadhika Students!
 
 + How to Setup Express Typescriptt with SQL?
     -   npm init --yes
-    -   npm install express mysql12
+    -   npm install express mysql2
     -   npm i -D typescript @types/express @types/node
     -   npx tsc --init
     -   npm i -D concurrently nodemon
@@ -39,6 +39,10 @@ Hello, Purwadhika Students!
             "start": "node dist/index.js",
             "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\""
         }
+    - Edit uncomment outdir in tsconfig.json and change to:
+        "outDir": "./dist",
+    - create folder src/connection
+    - create file db
 
 + How to kill port (macos)?
     - sudo lsof -i :<PortNumber>
@@ -60,5 +64,8 @@ Hello, Purwadhika Students!
 
     Delete User:
     - DROP USER ‘user_name’@‘localhost’;
+
++ Additional JS library:
+    - npm install moment --save
 
         How to Running? npm run dev
