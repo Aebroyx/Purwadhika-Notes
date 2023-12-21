@@ -75,7 +75,7 @@ app.post('/addbook', (req, res) => __awaiter(void 0, void 0, void 0, function* (
             ISBN: bookData.ISBN,
             publication_year: bookData.publication_year
         });
-        const addBooksBranch = yield query('INSERTo INTO boks_branches SET ?', {
+        const addBooksBranch = yield query('INSERT INTO books_branches SET ?', {
             stocks: bookData.stocks,
             books_id: addBooks.insertId,
             branches_id: bookData.branches_id
@@ -88,6 +88,36 @@ app.post('/addbook', (req, res) => __awaiter(void 0, void 0, void 0, function* (
             error: false,
             message: 'Book Added!',
             data: addBooks.insertId
+        });
+    }
+    catch (error) {
+        res.status(500).send({
+            error: true,
+            message: error.message
+        });
+    }
+}));
+// Admin can edit books
+app.put('/editbook', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const bookId = req.body.id;
+        const updatedData = req.body;
+        // Update main book details
+        const updateBookQuery = `UPDATE books SET ? WHERE id = ?`;
+        yield query(updateBookQuery, [updatedData, bookId]);
+        // Optionally update category, if provided
+        if (updatedData.category_id) {
+            const updateCategoryQuery = `UPDATE category_books SET categories_id = ? WHERE books_id = ?`;
+            yield query(updateCategoryQuery, [updatedData.category_id, bookId]);
+        }
+        // Optionally update stock, if provided
+        if (updatedData.branch_id && updatedData.new_stock) {
+            const updateStockQuery = `UPDATE books_branches SET stocks = ? WHERE books_id = ? AND branches_id = ?`;
+            yield query(updateStockQuery, [updatedData.new_stock, bookId, updatedData.branch_id]);
+        }
+        res.status(200).send({
+            error: false,
+            message: 'Book updated successfully!'
         });
     }
     catch (error) {

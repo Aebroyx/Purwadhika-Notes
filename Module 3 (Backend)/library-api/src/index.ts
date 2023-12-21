@@ -77,7 +77,7 @@ app.post('/addbook', async(req: Request, res: Response): Promise<void> => {
         });
 
         const addBooksBranch = await query(
-            'INSERTo INTO boks_branches SET ?', {
+            'INSERT INTO books_branches SET ?', {
                 stocks: bookData.stocks,
                 books_id: addBooks.insertId,
                 branches_id: bookData.branches_id
@@ -107,6 +107,40 @@ app.post('/addbook', async(req: Request, res: Response): Promise<void> => {
         )
     }
 })
+
+// Admin can edit books
+app.put('/editbook', async (req: Request, res: Response): Promise<void> => {
+    try {
+        const bookId: number = req.body.id;
+        const updatedData = req.body;
+
+        // Update main book details
+        const updateBookQuery = `UPDATE books SET ? WHERE id = ?`;
+        await query(updateBookQuery, [updatedData, bookId]);
+
+        // Optionally update category, if provided
+        if (updatedData.category_id) {
+            const updateCategoryQuery = `UPDATE category_books SET categories_id = ? WHERE books_id = ?`;
+            await query(updateCategoryQuery, [updatedData.category_id, bookId]);
+        }
+
+        // Optionally update stock, if provided
+        if (updatedData.branch_id && updatedData.new_stock) {
+            const updateStockQuery = `UPDATE books_branches SET stocks = ? WHERE books_id = ? AND branches_id = ?`;
+            await query(updateStockQuery, [updatedData.new_stock, bookId, updatedData.branch_id]);
+        }
+
+        res.status(200).send({
+            error: false,
+            message: 'Book updated successfully!'
+        });
+    } catch (error: any) {
+        res.status(500).send({
+            error: true,
+            message: error.message
+        });
+    }
+});
 
 app.listen(port, () => {
     console.log(`[SERVER] Server Running on Port ${port}`)
