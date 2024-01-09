@@ -29,6 +29,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const route = (0, express_1.Router)();
 route.use(express_1.default.json());
+// Import Routers
 const adminRouter_1 = __importDefault(require("./adminRouter"));
+const productRouter_1 = __importDefault(require("./productRouter"));
 route.use("/admin", adminRouter_1.default);
+route.use("/products", productRouter_1.default);
 exports.default = route;

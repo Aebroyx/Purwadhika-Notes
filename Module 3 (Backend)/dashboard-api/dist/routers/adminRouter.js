@@ -25,7 +25,11 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const route = (0, express_1.Router)();
+// Import adminController
 const adminController = __importStar(require("../controllers/adminController"));
+// Import middleware
+const tokenVerification_1 = require("../middleware/tokenVerification");
 route.post("/register", adminController.register);
 route.post("/login", adminController.login);
+route.patch("/verification", tokenVerification_1.tokenVerifyUser, adminController.verification);
 exports.default = route;

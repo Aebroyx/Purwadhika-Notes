@@ -12,9 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.login = exports.register = void 0;
+exports.login = exports.verification = exports.register = void 0;
 const connection_1 = __importDefault(require("../connection"));
 const hashPassword_1 = require("../lib/hashPassword");
+const JWT_1 = require("../lib/JWT");
+const transporterMailer_1 = require("../helpers/transporterMailer");
+const fs_1 = __importDefault(require("fs"));
+const handlebars_1 = __importDefault(require("handlebars"));
 const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { email, username, password, role } = req.body;
@@ -22,13 +26,23 @@ const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
             return next({ message: "Please insert email, username and password" });
         }
         const hashedPassword = yield (0, hashPassword_1.hashPassword)(password);
-        yield connection_1.default.admins.create({
+        const createUser = yield connection_1.default.admins.create({
             data: {
                 email,
                 username,
                 password: hashedPassword,
                 role
             }
+        });
+        const token = yield (0, JWT_1.jwtCreate)({ id: createUser.id, role: createUser.role });
+        const emailTemplate = fs_1.default.readFileSync('src/helpers/activationTemplate.html', 'utf8');
+        let compiledTemplate = yield handlebars_1.default.compile(emailTemplate);
+        compiledTemplate = compiledTemplate({ username, token });
+        yield transporterMailer_1.transporterNodemailer.sendMail({
+            from: 'Aebroyx The Developer',
+            to: email,
+            subject: 'Welcome to my dashboard-api, Please Activate Your Account',
+            html: compiledTemplate
         });
         res.status(200).send({
             error: false,
@@ -44,6 +58,31 @@ const register = (req, res, next) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.register = register;
+const verification = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        yield connection_1.default.admins.update({
+            where: {
+                id: req.body.id
+            },
+            data: {
+                verified: 1
+            }
+        });
+        res.status(200).send({
+            error: false,
+            message: "Verification Success",
+            data: null
+        });
+    }
+    catch (error) {
+        res.status(400).send({
+            error: true,
+            message: "Verification Failed",
+            data: null
+        });
+    }
+});
+exports.verification = verification;
 const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { usernameOrEmail, password } = req.body;
@@ -62,11 +101,15 @@ const login = (req, res, next) => __awaiter(void 0, void 0, void 0, function* ()
         if (isCompare === false) {
             return next({ message: "Incorrect Password" });
         }
+        const token = yield (0, JWT_1.jwtCreate)({ id: admin.id, role: admin.role });
         if (isCompare === true) {
             res.status(200).send({
                 error: false,
                 message: "Login Success",
-                data: null
+                data: {
+                    username: admin.username,
+                    token
+                }
             });
         }
     }

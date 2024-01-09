@@ -2,7 +2,10 @@ import { Request, Response, NextFunction } from "express";
 
 import prisma from '../connection';
 import { hashMatch, hashPassword } from "../lib/hashPassword";
-import JWT from "../lib/JWT";
+import { jwtCreate } from "../lib/JWT";
+import { transporterNodemailer } from "../helpers/transporterMailer";
+import fs from 'fs'
+import Handlebars from "handlebars";
 
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
@@ -14,13 +17,27 @@ export const register = async (req: Request, res: Response, next: NextFunction):
 
         const hashedPassword: string = await hashPassword(password)
 
-        await prisma.admins.create({
+        const createUser =await prisma.admins.create({
             data: {
                 email,
                 username,
                 password: hashedPassword,
                 role
             }
+        })
+
+        const token = await jwtCreate({id: createUser.id, role: createUser.role})
+
+        const emailTemplate = fs.readFileSync('src/helpers/activationTemplate.html', 'utf8');
+
+        let compiledTemplate: any = await Handlebars.compile(emailTemplate);
+        compiledTemplate = compiledTemplate({username, token})
+
+        await transporterNodemailer.sendMail({
+            from: 'Aebroyx The Developer',
+            to: email,
+            subject: 'Welcome to my dashboard-api, Please Activate Your Account',
+            html: compiledTemplate
         })
 
         res.status(200).send({
@@ -33,6 +50,31 @@ export const register = async (req: Request, res: Response, next: NextFunction):
             return next({message: "Email already exist"})
         }
         next({message: "Register Failed"})
+    }
+}
+
+export const verification = async(req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        await prisma.admins.update({
+            where: {
+                id: req.body.id
+            },
+            data: {
+                verified: 1
+            }
+        })
+
+        res.status(200).send({
+            error: false,
+            message: "Verification Success",
+            data: null
+        })
+    } catch (error) {
+        res.status(400).send({
+            error: true,
+            message: "Verification Failed",
+            data: null
+        })
     }
 }
 
@@ -59,11 +101,16 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
             return next({message: "Incorrect Password"})
         }
 
+        const token = await jwtCreate({id: admin.id, role: admin.role})
+
         if (isCompare === true) {
             res.status(200).send({
                 error: false,
                 message: "Login Success",
-                data: null
+                data: {
+                    username: admin.username,
+                    token
+                }
             })
         }
     }

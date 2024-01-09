@@ -16,6 +16,7 @@ model Admins {
   username String @unique
   password String
   role Role
+  verified Int @default(0)
 
   createdAt DateTime @default(now())
   updateAt DateTime @default(now())
@@ -24,4 +25,22 @@ model Admins {
 enum Role {
   USER
   ADMIN
+}
+
+model Products {
+  id String @id @default(uuid())
+  name String
+  price Int
+  description String
+  stock Int
+
+  ProductImages ProductImages[]
+}
+
+model ProductImages {
+  id String @id @default(uuid())
+  url String
+
+  Products Products @relation(fields: [products_id], references: [id])
+  products_id String
 }
