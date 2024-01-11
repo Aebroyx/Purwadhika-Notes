@@ -3,7 +3,7 @@ import prisma from "../connection";
 
 export const createProduct = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
-        const {name, price, description, stock} = req.body
+        const {name, price, description, stock} = JSON.parse(req.body.data)
 
         await prisma.products.create({
             data: {
@@ -21,6 +21,7 @@ export const createProduct = async (req: Request, res: Response, next: NextFunct
         })
     }
     catch (error){
+        console.log(error)
         next({message: "Create Product Failed"})
     }
 }

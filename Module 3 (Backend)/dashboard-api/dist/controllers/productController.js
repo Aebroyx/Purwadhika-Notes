@@ -16,7 +16,7 @@ exports.createProduct = void 0;
 const connection_1 = __importDefault(require("../connection"));
 const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { name, price, description, stock } = req.body;
+        const { name, price, description, stock } = JSON.parse(req.body.data);
         yield connection_1.default.products.create({
             data: {
                 name,
@@ -32,6 +32,7 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
         });
     }
     catch (error) {
+        console.log(error);
         next({ message: "Create Product Failed" });
     }
 });
