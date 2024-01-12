@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.createProduct = void 0;
+exports.deleteProduct = exports.createProduct = void 0;
 const connection_1 = __importDefault(require("../connection"));
+const fs_1 = __importDefault(require("fs"));
 const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     yield connection_1.default.$transaction((tx) => __awaiter(void 0, void 0, void 0, function* () {
         try {
@@ -46,9 +47,58 @@ const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
             });
         }
         catch (error) {
-            console.log(error);
+            if (req.file) {
+                const filesArray = Array.isArray(req.files) ? req.files : req.files['bebas'];
+                filesArray.forEach((item) => {
+                    fs_1.default.rmSync(item.path);
+                });
+            }
             next({ message: "Create Product Failed" });
         }
     }));
 });
 exports.createProduct = createProduct;
+const deleteProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // 1. Get Id Product from Req
+        const { productId } = req.params;
+        console.log(productId);
+        let imagesToDelete;
+        yield connection_1.default.$transaction((tx) => __awaiter(void 0, void 0, void 0, function* () {
+            // 2.1. Before Delete Images, Get Image Url to Delete Image File from Public
+            imagesToDelete = yield tx.productImages.findMany({
+                where: {
+                    products_id: {
+                        contains: productId
+                    }
+                }
+            });
+            // 2.2. Delete Product_Images
+            yield tx.productImages.deleteMany({
+                where: {
+                    products_id: productId
+                }
+            });
+            // 3. Delete Products
+            yield tx.products.delete({
+                where: {
+                    id: productId
+                }
+            });
+        }));
+        // 4. Delete Images from public/images
+        imagesToDelete.forEach((item) => {
+            console.log(item);
+            fs_1.default.rmSync('public/image/' + item.url);
+        });
+        res.status(200).send({
+            error: false,
+            message: "Delete Product Success",
+            data: null
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+});
+exports.deleteProduct = deleteProduct;
