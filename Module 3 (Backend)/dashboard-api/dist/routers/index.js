@@ -29,6 +29,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importStar(require("express"));
 const route = (0, express_1.Router)();
 route.use(express_1.default.json());
+route.use("*/image", express_1.default.static('public/image'));
 // Import Routers
 const adminRouter_1 = __importDefault(require("./adminRouter"));
 const productRouter_1 = __importDefault(require("./productRouter"));

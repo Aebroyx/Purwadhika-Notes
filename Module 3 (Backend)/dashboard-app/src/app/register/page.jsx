@@ -1,5 +1,4 @@
 'use client';
-
 import { useMutation } from "@tanstack/react-query";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import * as Yup from 'yup';
@@ -39,7 +38,6 @@ export default function Page(){
 
     return(
         <>
-            <section className="flex flex-col items-center">
                 <Formik
                     initialValues={{username: '', email: '', password: '', role: 'ADMIN'}}
                     validationSchema={registerSchema}
@@ -50,7 +48,7 @@ export default function Page(){
                     }}
                 >
                     <Form>
-                        <div className="w-[500px] py-20">
+                        <div className="w-[500] py-20">
                             <div className="pb-3">
                                 <h1 className="text-3xl font-bold text-yellow-400">
                                     Register Admin
@@ -148,7 +146,6 @@ export default function Page(){
                         </div>
                     </Form>
                 </Formik>
-            </section>
         </>
     )
 }

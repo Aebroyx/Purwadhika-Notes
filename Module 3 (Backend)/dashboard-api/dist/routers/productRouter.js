@@ -30,4 +30,5 @@ const productController = __importStar(require("../controllers/productController
 const uploadValidator_1 = require("../middleware/uploadValidator");
 route.post('/create', uploadValidator_1.uploadValidator, productController.createProduct);
 route.delete('/:productId', productController.deleteProduct);
+route.get('/get', productController.getProducts);
 exports.default = route;

@@ -11,5 +11,6 @@ import { uploadValidator } from "../middleware/uploadValidator";
 
 route.post('/create', uploadValidator, productController.createProduct)
 route.delete('/:productId', productController.deleteProduct)
+route.get('/get', productController.getProducts)
 
 export default route

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteProduct = exports.createProduct = void 0;
+exports.getProducts = exports.deleteProduct = exports.createProduct = void 0;
 const connection_1 = __importDefault(require("../connection"));
 const fs_1 = __importDefault(require("fs"));
 const createProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
@@ -102,3 +102,21 @@ const deleteProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
     }
 });
 exports.deleteProduct = deleteProduct;
+const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const products = yield connection_1.default.products.findMany({
+            include: {
+                ProductImages: true
+            }
+        });
+        res.status(200).send({
+            error: false,
+            message: "Get Products Success",
+            data: products
+        });
+    }
+    catch (error) {
+        next({ message: "Get Products Failed" });
+    }
+});
+exports.getProducts = getProducts;
